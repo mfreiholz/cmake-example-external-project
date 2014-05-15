@@ -1,0 +1,50 @@
+
+include(ExternalProject)
+
+# HumbleLogging
+ExternalProject_Add(
+  HumbleLogging
+  
+  #DOWNLOAD_COMMAND ""
+  GIT_REPOSITORY "https://github.com/mfreiholz/humble-logging-library.git"
+  GIT_TAG "master"
+  
+  UPDATE_COMMAND ""
+  PATCH_COMMAND ""
+  
+  SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/humblelogging"
+  CMAKE_ARGS -DBuildShared=ON -DBuildExamples=OFF
+  BINARY_DIR "${PROJECT_BINARY_DIR}/bin"
+  
+  INSTALL_COMMAND ""
+  
+  TEST_COMMAND ""
+)
+set(HumbleLogging_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/3rdparty/humblelogging/include")
+set(HumbleLogging_LIBRARIES "${CMAKE_SHARED_LIBRARY_PREFIX}humblelogging${CMAKE_SHARED_LIBRARY_SUFFIX}")
+include_directories(${HumbleLogging_INCLUDE_DIRS})
+
+
+# Google Prototype Buffers
+#ExternalProject_Add(
+#  protobuf
+#
+#  URL https://protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz
+#  
+#  UPDATE_COMMAND ""
+#  PATCH_COMMAND ""
+#  
+#  SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/protobuf"
+#  CONFIGURE_COMMAND "${CMAKE_SOURCE_DIR}/3rdparty/protobuf/configure" --prefix=${PROJECT_BINARY_DIR}/bin
+#  
+#  BINARY_DIR "${PROJECT_BINARY_DIR}/bin"
+#  BUILD_COMMAND make
+#  
+#  INSTALL_COMMAND make install
+#  
+#  TEST_COMMAND ""
+#)
+#set(protobuf_INCLUDE_DIRS ${PROJECT_BINARY_DIR}/bin/include)
+#set(protobuf_LIBRARIES ${PROJECT_BINARY_DIR}/bin/lib/???)
+#include_directories(${protobuf_INCLUDE_DIRS})
+
